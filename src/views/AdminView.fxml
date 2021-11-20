@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="534.0" maxWidth="662.0" prefHeight="465.0" prefWidth="662.0" style="-fx-background-color: bbbdbd;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
+   <children>
+      <Button layoutX="14.0" layoutY="124.0" mnemonicParsing="false" onAction="#viewUsers" prefHeight="23.0" prefWidth="154.0" text="View Users" />
+      <Button layoutX="14.0" layoutY="189.0" mnemonicParsing="false" onAction="#updateRec" text="Update movie/TV series" />
+      <Button layoutX="13.0" layoutY="253.0" mnemonicParsing="false" onAction="#addRec" prefHeight="23.0" prefWidth="154.0" text="Add movie/TV series" />
+      <Button layoutX="14.0" layoutY="377.0" mnemonicParsing="false" onAction="#logout" prefHeight="23.0" prefWidth="154.0" text="logout" />
+      <Button layoutX="13.0" layoutY="316.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="154.0" text="Delete movie/TV series" />
+      <Pane fx:id="paneUserList" layoutX="202.0" layoutY="124.0" prefHeight="324.0" prefWidth="438.0" style="-fx-border-color: Blue; -fx-border-width: 1;">
+         <effect>
+            <Glow level="0.0" />
+         </effect>
+         <children>
+            <Label layoutX="26.0" layoutY="25.0" text="Enter username" />
+            <TextField layoutX="149.0" layoutY="21.0" />
+            <TableView layoutX="46.0" layoutY="87.0" prefHeight="192.0" prefWidth="347.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="C1" />
+                  <TableColumn prefWidth="75.0" text="C2" />
+               </columns>
+            </TableView>
+            <Button layoutX="340.0" layoutY="21.0" mnemonicParsing="false" text="search" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneUpdateList" layoutX="202.0" layoutY="124.0" prefHeight="324.0" prefWidth="438.0" style="-fx-border-color: Blue; -fx-border-width: 1;" visible="false">
+         <effect>
+            <Glow level="0.0" />
+         </effect>
+         <children>
+            <Label layoutX="25.0" layoutY="53.0" text="Enter title" />
+            <TextField layoutX="103.0" layoutY="49.0" />
+            <TableView layoutX="46.0" layoutY="102.0" prefHeight="177.0" prefWidth="347.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Button layoutX="291.0" layoutY="49.0" mnemonicParsing="false" text="search" />
+            <Label layoutX="150.0" layoutY="21.0" text="Update movie/TV series" />
+         </children>
+      </Pane>
+      <Pane fx:id="paneDeleteList" layoutX="202.0" layoutY="124.0" prefHeight="324.0" prefWidth="438.0" style="-fx-border-color: Blue; -fx-border-width: 1;" visible="false">
+         <effect>
+            <Glow level="0.0" />
+         </effect>
+         <children>
+            <Label layoutX="27.0" layoutY="52.0" text="Enter title" />
+            <TextField layoutX="104.0" layoutY="48.0" />
+            <TableView layoutX="46.0" layoutY="102.0" prefHeight="177.0" prefWidth="347.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="C1" />
+                  <TableColumn prefWidth="75.0" text="C2" />
+               </columns>
+            </TableView>
+            <Button layoutX="305.0" layoutY="48.0" mnemonicParsing="false" text="search" />
+            <Label layoutX="153.0" layoutY="14.0" text="Delete movie/TV series" />
+         </children>
+      </Pane>
+      <Label layoutX="282.0" layoutY="52.0" text="Welcome admin " />
+   </children>
+</AnchorPane>
