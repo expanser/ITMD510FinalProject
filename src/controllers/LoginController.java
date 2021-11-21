@@ -70,11 +70,11 @@ public class LoginController {
 
 			} else {
 				// If user is customer, inflate customer view
-
+				int user_id = model.getId();
+				ClientController.setUserid(user_id);
+				
 				root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/ClientView.fxml"));
 				// ***Set user ID acquired from db****
-				int user_id = model.getId();  
-				ClientController.setUserid(user_id);
 				Main.stage.setTitle("Client View");
 			}
 
