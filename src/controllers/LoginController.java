@@ -1,5 +1,7 @@
 package controllers;
 
+import java.io.IOException;
+
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +30,7 @@ public class LoginController {
 	}
 	
 	public void login() {
-
+		
 		lblError.setText("");
 		String username = this.txtUsername.getText();
 		String password = this.txtPassword.getText();
@@ -55,7 +57,7 @@ public class LoginController {
 	public void checkCredentials(String username, String password) {
 		Boolean isValid = model.getCredentials(username, password);
 		if (!isValid) {
-			lblError.setText("User does not exist!");
+			lblError.setText("User or password error!");
 			return;
 		}
 		try {
@@ -72,7 +74,7 @@ public class LoginController {
 				root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/ClientView.fxml"));
 				// ***Set user ID acquired from db****
 				int user_id = model.getId();  
-//				ClientController.setUserid(user_id);
+				ClientController.setUserid(user_id);
 				Main.stage.setTitle("Client View");
 			}
 
@@ -86,7 +88,16 @@ public class LoginController {
 	}
 	
 	public void register() {
-		
+		AnchorPane root;
+		try {
+			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/RegisterView.fxml"));
+			Main.stage.setTitle("Register View");
+			Scene scene = new Scene(root);
+			Main.stage.setScene(scene);
+		} catch (IOException e) {
+			System.out.println("Error occured while inflating view: " + e);
+		}
+
 	}
 	
 }

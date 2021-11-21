@@ -17,13 +17,7 @@ public class AdminController {
 	@FXML
 	private Pane paneUserList;
 	@FXML
-	private Pane paneUserDetail;
-	@FXML
 	private Pane paneUpdateList;
-	@FXML
-	private Pane paneUpdateDetail;
-	@FXML
-	private Pane paneAddDetail;
 	@FXML
 	private Pane paneDeleteList;
 	
@@ -68,7 +62,7 @@ public class AdminController {
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("/application/styles.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 			Main.stage.setScene(scene);
 			Main.stage.setTitle("Login");
 		} catch (Exception e) {
@@ -87,7 +81,7 @@ public class AdminController {
 
 			// Include all object data to the database table
 
-			sql = "insert into jpapa_bank(name,address) values ('" + txtName.getText() + "','" + txtAddress.getText()
+			sql = "insert into jpapa_bank(name,address) values ('" + txtName.getText() + "','" + txtName.getText()
 					+ "')";
 			stmt.executeUpdate(sql);
 			System.out.println("Bank Record created");

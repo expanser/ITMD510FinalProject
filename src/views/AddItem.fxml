@@ -21,7 +21,7 @@
             <TextField fx:id="txtName" layoutX="131.0" layoutY="46.0" prefHeight="23.0" prefWidth="203.0" />
             <Label layoutX="152.0" layoutY="14.0" text="Add movie/TV series" />
             <Label layoutX="20.0" layoutY="50.0" text="Name" />
-            <Label layoutX="18.0" layoutY="134.0" text="Type" />
+            <Label layoutX="18.0" layoutY="134.0" text="Genre" />
             <DatePicker layoutX="131.0" layoutY="173.0" prefHeight="23.0" prefWidth="203.0" />
             <Label layoutX="17.0" layoutY="177.0" prefHeight="15.0" prefWidth="74.0" text="Release date" />
             <ChoiceBox layoutX="131.0" layoutY="130.0" prefHeight="23.0" prefWidth="203.0" />

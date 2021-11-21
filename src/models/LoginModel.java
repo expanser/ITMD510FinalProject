@@ -26,14 +26,14 @@ public class LoginModel extends DBConnect {
 		
 	public Boolean getCredentials(String username, String password){
            
-        	String query = "SELECT * FROM jpapa_users WHERE uname = ? and passwd = ?;";
+        	String query = "SELECT * FROM wei_zhou_users WHERE user_name = ? and user_password = ?;";
             try(PreparedStatement stmt = connection.prepareStatement(query)) {
                stmt.setString(1, username);
                stmt.setString(2, password);
                ResultSet rs = stmt.executeQuery();
                 if(rs.next()) { 
                 	setId(rs.getInt("id"));
-                	setAdmin(rs.getBoolean("admin"));
+                	setAdmin(rs.getBoolean("is_admin"));
                 	return true;
                	}
              }catch (SQLException e) {
