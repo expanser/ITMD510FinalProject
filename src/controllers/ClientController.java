@@ -22,7 +22,7 @@ import javafx.scene.layout.Priority;
 
 public class ClientController {
 
-	private static int user_id;
+	static int user_id;
 
 	@FXML
 	private ListView<HBoxCell> mediaList;
