@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.stage.Stage;
 
 public class ClientController {
 
@@ -90,7 +91,17 @@ public class ClientController {
    }
 	
 	public void viewComments() {
-		
+		try {
+			Stage stage = new Stage();
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/UserComments.fxml"));
+			stage.setTitle("UserComments View");
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.showAndWait();
+		} catch (IOException e) {
+			System.out.println("Error occured while inflating view: " + e);
+		}
+
 	}
 	
 	

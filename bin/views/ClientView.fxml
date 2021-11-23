@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: bbbdbd;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClientController">
    <children>
-      <Button layoutX="94.0" layoutY="377.0" mnemonicParsing="false" text="View my comments" />
+      <Button layoutX="94.0" layoutY="377.0" mnemonicParsing="false" onAction="#viewComments" text="View my comments" />
       <Button layoutX="443.0" layoutY="86.0" mnemonicParsing="false" onAction="#search" prefHeight="27.0" text="Search" AnchorPane.rightAnchor="102.60000000000002" />
       <Button layoutX="364.0" layoutY="377.0" mnemonicParsing="false" onAction="#logout" prefHeight="27.0" prefWidth="134.0" text="Logout" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="364.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="377.0" />
       <TextField fx:id="txtKeyword" layoutX="94.0" layoutY="86.0" prefHeight="27.0" prefWidth="335.0" />

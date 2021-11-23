@@ -34,7 +34,7 @@ public class MediaDetailModel extends DBConnect {
 	
 	public ArrayList<ArrayList<Object>> getComments(int media_id) {
 		
-    	String query = "SELECT wei_zhou_users.user_name,wei_zhou_comments.content,wei_zhou_comments.create_time FROM wei_zhou_users,wei_zhou_comments WHERE media_id = ? and wei_zhou_users.id = wei_zhou_comments.user_id;";
+    	String query = "SELECT wei_zhou_users.user_name,wei_zhou_comments.content,wei_zhou_comments.create_time FROM wei_zhou_users,wei_zhou_comments WHERE wei_zhou_comments.media_id = ? and wei_zhou_users.id = wei_zhou_comments.user_id;";
         try(PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, media_id);
         	ResultSet rs = stmt.executeQuery();
