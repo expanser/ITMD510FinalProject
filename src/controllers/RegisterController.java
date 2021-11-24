@@ -75,7 +75,7 @@ public class RegisterController {
 		Boolean isDone = model.addUser(username, password);
 		if (isDone) {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Movie/TV series Database");
+			alert.setTitle("Movie/TV series Archives");
 			alert.setHeaderText("Register success!");
 			alert.showAndWait();
 			cancel();

@@ -126,7 +126,7 @@ public class MediaController {
 		String txtComment = this.txtComment.getText();
 		if (txtComment == null || txtComment.trim().equals("")) {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Movie/TV series Database");
+			alert.setTitle("Movie/TV series Archives");
 			alert.setHeaderText("Review Cannot be empty or spaces!");
 			alert.showAndWait();
 		return;
@@ -134,10 +134,10 @@ public class MediaController {
 		Boolean isDone = model.postComment(user_id, media_id, txtComment);
 		if (isDone) {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Movie/TV series Database");
+			alert.setTitle("Movie/TV series Archives");
 			alert.setHeaderText("Post review success!");
 			alert.showAndWait();
-			this.txtComment.setText(null);
+			this.txtComment.setText("");
 			handleCommentsList();
 		}
 	}

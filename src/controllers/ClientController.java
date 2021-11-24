@@ -29,6 +29,8 @@ public class ClientController {
 	private ListView<HBoxCell> mediaList;
 	@FXML
 	private TextField txtKeyword;
+	
+	NoticeListItemChangeListener movieListener;
 
 	private ClientModel model;
 
@@ -41,6 +43,7 @@ public class ClientController {
 	}
 	
 	public void search() {
+		if (movieListener != null) mediaList.getSelectionModel().selectedItemProperty().removeListener(movieListener);
 		String keyword = this.txtKeyword.getText();
 		ArrayList<ArrayList<Object>> data = model.searchMedia(keyword);
 
@@ -53,8 +56,8 @@ public class ClientController {
 		
 		ObservableList<HBoxCell> strList = FXCollections.observableArrayList(list);
 		mediaList.setItems(strList);
-
-		mediaList.getSelectionModel().selectedItemProperty().addListener(new NoticeListItemChangeListener());
+		movieListener = new NoticeListItemChangeListener();
+		mediaList.getSelectionModel().selectedItemProperty().addListener(movieListener);
 	}
 	
 	private class NoticeListItemChangeListener implements ChangeListener<Object> {
@@ -92,6 +95,7 @@ public class ClientController {
 	
 	public void viewComments() {
 		try {
+			CommentController.setUserid(user_id);
 			Stage stage = new Stage();
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/UserComments.fxml"));
 			stage.setTitle("UserComments View");

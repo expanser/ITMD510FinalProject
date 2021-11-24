@@ -17,6 +17,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
 public class CommentController {
+	
+	static int user_id;
 
 	@FXML
 	private ListView<HBoxCell> commentsList;
@@ -42,8 +44,11 @@ public class CommentController {
 		backgroundThread.start();
 	}
 	
+	public static void setUserid(int id) {
+		user_id = id;
+	}
+	
 	public void handleCommentsList() {
-		int user_id = ClientController.user_id;
 		ArrayList<ArrayList<Object>> data = model.getComments(user_id);
         List<HBoxCell> list = new ArrayList<>();
         
