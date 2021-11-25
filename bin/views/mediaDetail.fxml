@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="530.0" maxWidth="600.0" prefHeight="530.0" prefWidth="600.0" style="-fx-background-color: bbbdbd;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MediaController">
+<AnchorPane maxHeight="530.0" maxWidth="600.0" prefHeight="530.0" prefWidth="600.0" style="-fx-background-color: bbbdbd;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MediaDetailController">
    <children>
       <Button layoutX="46.0" layoutY="32.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="92.0" text="Go back" AnchorPane.rightAnchor="462.0" />
       <Label layoutX="46.0" layoutY="95.0" text="Name" />

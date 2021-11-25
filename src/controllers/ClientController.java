@@ -80,7 +80,7 @@ public class ClientController {
         }
         
         public void click() {
-        	MediaController.setMediaId(id);
+        	MediaDetailController.setMediaId(id);
     		AnchorPane root;
     		try {
     			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/mediaDetail.fxml"));
@@ -95,7 +95,7 @@ public class ClientController {
 	
 	public void viewComments() {
 		try {
-			CommentController.setUserid(user_id);
+			CommentController.setUserId(user_id);
 			Stage stage = new Stage();
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/UserComments.fxml"));
 			stage.setTitle("UserComments View");

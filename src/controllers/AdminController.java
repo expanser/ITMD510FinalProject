@@ -73,7 +73,18 @@ public class AdminController {
 	}
 
 	public void addRec() {
-
+		try {
+			MediaAddController.setMediaId(0);
+			Stage stage = new Stage();
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/AddItem.fxml"));
+			stage.setTitle("AddMedia View");
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			MediaAddController.setStage(stage);
+			stage.showAndWait();
+		} catch (IOException e) {
+			System.out.println("Error occured while inflating view: " + e);
+		}
 	}
 	
 	public void deleteRec() {
@@ -154,7 +165,7 @@ public class AdminController {
     
     public void handleGotoUser(int id){
 		try {
-			CommentController.setUserid(id);
+			CommentController.setUserId(id);
 			Stage stage = new Stage();
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/UserComments.fxml"));
 			stage.setTitle("UserComments View");
@@ -166,11 +177,24 @@ public class AdminController {
 		}
     }
     
-    public void handleUpdateMedia(int id){}
+    public void handleUpdateMedia(int id){
+		try {
+			MediaAddController.setMediaId(id);
+			Stage stage = new Stage();
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/AddItem.fxml"));
+			stage.setTitle("UpdateMedia View");
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			MediaAddController.setStage(stage);
+			stage.showAndWait();
+		} catch (IOException e) {
+			System.out.println("Error occured while inflating view: " + e);
+		}
+    }
     
     public void handleDeleteMedia(String title, int id) {
 		Alert alert = new Alert(AlertType.CONFIRMATION, "Delete " + title + " ?", ButtonType.YES, ButtonType.NO);
-		alert.setTitle("Movie/TV series Archives");
+		alert.setTitle("Films/TV Series Archives");
 		alert.setHeaderText("Confirm");
 		alert.showAndWait();
 		if (alert.getResult() == ButtonType.YES) {

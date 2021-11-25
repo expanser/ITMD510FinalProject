@@ -44,7 +44,7 @@ public class CommentController {
 		backgroundThread.start();
 	}
 	
-	public static void setUserid(int id) {
+	public static void setUserId(int id) {
 		user_id = id;
 	}
 	
