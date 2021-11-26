@@ -165,10 +165,11 @@ public class AdminController {
     
     public void handleGotoUser(int id){
 		try {
+			CommentController.setIsAdmin(1);
 			CommentController.setUserId(id);
 			Stage stage = new Stage();
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/UserComments.fxml"));
-			stage.setTitle("UserComments View");
+			stage.setTitle("UserReviews View");
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.showAndWait();

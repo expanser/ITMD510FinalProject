@@ -4,9 +4,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="400.0" maxWidth="592.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CommentController">
+<AnchorPane maxHeight="452.0" maxWidth="592.0" minHeight="400.0" minWidth="400.0" prefHeight="452.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CommentController">
    <children>
-         <ListView fx:id="commentsList" layoutX="38.0" layoutY="90.0" prefHeight="275.0" prefWidth="514.0" />
-      <Label layoutX="250.0" layoutY="42.0" text="User comments" />
+         <ListView fx:id="commentsList" layoutX="38.0" layoutY="142.0" prefHeight="275.0" prefWidth="514.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="44.0" text="User comments" />
+      <Label fx:id="lblTip" alignment="CENTER" contentDisplay="CENTER" layoutX="69.0" layoutY="95.0" prefHeight="15.0" prefWidth="453.0" text=" " />
    </children>
 </AnchorPane>

@@ -13,7 +13,7 @@
             <Glow level="0.0" />
          </effect>
          <children>
-            <Label layoutX="156.0" layoutY="29.0" text="User comment record" />
+            <Label layoutX="156.0" layoutY="29.0" text="User reviews record" />
          <ScrollPane layoutX="50.0" layoutY="83.0" prefHeight="200.0" prefWidth="350.0">
            <content>
              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />

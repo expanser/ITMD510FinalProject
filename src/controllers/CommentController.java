@@ -7,11 +7,16 @@ import java.util.Date;
 import java.util.List;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import models.CommentModel;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -19,20 +24,31 @@ import javafx.scene.layout.Priority;
 public class CommentController {
 	
 	static int user_id;
+	
+	static int is_admin = 0;
+	
+	NoticeListItemChangeListener commentsListener;
 
 	@FXML
 	private ListView<HBoxCell> commentsList;
+	@FXML
+	private Label lblTip;
 	
 	private CommentModel model;
 	
 	public CommentController() {
 		model = new CommentModel();
+		initPage();
+	}
+	
+	public void initPage() {
 		// Create a Runnable
 		Runnable task = new Runnable()
 		{
 			public void run()
 			{
 				handleCommentsList();
+				handleLblTitle();
 			}
 		};
 
@@ -48,32 +64,67 @@ public class CommentController {
 		user_id = id;
 	}
 	
-	public void handleCommentsList() {
-		ArrayList<ArrayList<Object>> data = model.getComments(user_id);
-        List<HBoxCell> list = new ArrayList<>();
-        
+	public static void setIsAdmin(int isAdmin) {
+		is_admin = isAdmin;
+	}
+	
+	public void handleLblTitle() {
 		Platform.runLater(() -> {
-	        for (int i = 0; i < data.size(); i++) {
-	        	String title = (String)data.get(i).get(0);
-	        	String content = (String)data.get(i).get(1);
-	        	Date createTime = (Date)data.get(i).get(2);
-	    		Format formatter = new SimpleDateFormat("HH:mm MM/dd/yyyy");
-	    		list.add(new HBoxCell(title, content, formatter.format(createTime)));
-	        }
-			ObservableList<HBoxCell> strList = FXCollections.observableArrayList(list);
-			commentsList.setItems(strList);
+			lblTip.setText(is_admin == 1 ? "Click to delete the review" : "");
 		});
 	}
 	
-    public static class HBoxCell extends HBox {
+	public void handleCommentsList() {
+		if (commentsListener != null) commentsList.getSelectionModel().selectedItemProperty().removeListener(commentsListener);
+		ArrayList<ArrayList<Object>> data = model.getComments(user_id);
+        List<HBoxCell> list = new ArrayList<>();
+        
+		Platform.runLater(() -> {	
+	        for (int i = 0; i < data.size(); i++) {
+	        	int id = (int)data.get(i).get(0);
+	        	String title = (String)data.get(i).get(1);
+	        	String content = (String)data.get(i).get(2);
+	        	Date createTime = (Date)data.get(i).get(3);
+	    		Format formatter = new SimpleDateFormat("HH:mm MM/dd/yyyy");
+	    		list.add(new HBoxCell(id, title, content, formatter.format(createTime)));
+	        }
+			ObservableList<HBoxCell> strList = FXCollections.observableArrayList(list);
+			commentsList.setItems(strList);
+			commentsListener = new NoticeListItemChangeListener();
+			commentsList.getSelectionModel().selectedItemProperty().addListener(commentsListener);
+		});
+	}
+	
+	private class NoticeListItemChangeListener implements ChangeListener<Object> {
+
+        public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
+            ((HBoxCell) newValue).click();
+        }
+	}
+	
+    public class HBoxCell extends HBox {
         Label label = new Label();
-        HBoxCell(String title, String content, String date) {
+        int id;
+        HBoxCell(int commentId, String title, String content, String date) {
              super();
+             id = commentId;
              label.setText("Review on " + title + ", at " + date + " says \r\n" + content);
              label.setMaxWidth(470);
              label.setWrapText(true);
              HBox.setHgrow(label, Priority.ALWAYS);
              this.getChildren().addAll(label);
+        }
+        
+        public void click() {
+        	if (is_admin != 1) return;
+    		Alert alert = new Alert(AlertType.CONFIRMATION, "Delete this review?", ButtonType.YES, ButtonType.NO);
+    		alert.setTitle("Films/TV Series Archives");
+    		alert.setHeaderText("Confirm");
+    		alert.showAndWait();
+    		if (alert.getResult() == ButtonType.YES) {
+    			Boolean isDone = model.deleteReview(id);
+    			if (isDone) initPage();
+    		}
         }
    }
 

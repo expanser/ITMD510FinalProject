@@ -12,7 +12,7 @@ public class CommentModel extends DBConnect {
 	
 	public ArrayList<ArrayList<Object>> getComments(int user_id) {
 		
-    	String query = "SELECT wei_zhou_media.title,wei_zhou_comments.content,wei_zhou_comments.create_time FROM wei_zhou_media,wei_zhou_comments WHERE wei_zhou_comments.user_id = ? and wei_zhou_comments.media_id = wei_zhou_media.id;";
+    	String query = "SELECT wei_zhou_comments.id,wei_zhou_media.title,wei_zhou_comments.content,wei_zhou_comments.create_time FROM wei_zhou_media,wei_zhou_comments WHERE wei_zhou_comments.user_id = ? and wei_zhou_comments.media_id = wei_zhou_media.id;";
         try(PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, user_id);
         	ResultSet rs = stmt.executeQuery();
@@ -33,5 +33,18 @@ public class CommentModel extends DBConnect {
 		return null;
 	}
 	
+	public boolean deleteReview(int commentId) {
+    	String query = "DELETE FROM `wei_zhou_comments` WHERE id = ?;";
+        try(PreparedStatement stmt = connection.prepareStatement(query)) {
+           stmt.setInt(1, commentId);
+           int res = stmt.executeUpdate();
+	        if(res == 1) {
+	        	return true;
+	       	}
+         }catch (SQLException e) {
+        	e.printStackTrace();   
+         }
+		return false;
+	}
 		
 }

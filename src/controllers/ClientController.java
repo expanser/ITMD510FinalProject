@@ -95,10 +95,11 @@ public class ClientController {
 	
 	public void viewComments() {
 		try {
+			CommentController.setIsAdmin(0);
 			CommentController.setUserId(user_id);
 			Stage stage = new Stage();
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/UserComments.fxml"));
-			stage.setTitle("UserComments View");
+			stage.setTitle("UserReviews View");
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.showAndWait();
