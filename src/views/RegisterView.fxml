@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegisterController">
    <children>
-      <Button layoutX="70.0" layoutY="315.0" mnemonicParsing="false" onAction="#cancel" prefWidth="100.0" text="cancel" textFill="#ef4731" />
-      <TextField fx:id="txtUsername" layoutX="120.0" layoutY="119.0" promptText="username" />
-      <Button layoutX="232.0" layoutY="315.0" mnemonicParsing="false" onAction="#register" prefWidth="100.0" text="submit" textFill="#00b879" />
-      <PasswordField fx:id="txtPassword" layoutX="120.0" layoutY="176.0" promptText="password" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="164.0" layoutY="58.0" text="Register" textFill="#3b7aff">
+      <Button layoutX="165.0" layoutY="315.0" mnemonicParsing="false" onAction="#cancel" prefWidth="100.0" text="cancel" textFill="#ef4731" />
+      <TextField fx:id="txtUsername" layoutX="201.0" layoutY="118.0" promptText="username" />
+      <Button layoutX="335.0" layoutY="315.0" mnemonicParsing="false" onAction="#register" prefWidth="100.0" text="submit" textFill="#00b879" />
+      <PasswordField fx:id="txtPassword" layoutX="201.0" layoutY="176.0" promptText="password" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="265.0" layoutY="59.0" text="Register" textFill="#3b7aff">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="lblError" alignment="CENTER" contentDisplay="CENTER" layoutX="49.0" layoutY="254.0" prefHeight="15.0" prefWidth="302.0" textFill="#ef4731" />
+      <Label fx:id="lblError" alignment="CENTER" contentDisplay="CENTER" layoutX="149.0" layoutY="254.0" prefHeight="15.0" prefWidth="302.0" textFill="#ef4731" />
    </children>
 </AnchorPane>

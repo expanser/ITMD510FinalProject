@@ -84,6 +84,7 @@ public class AdminController {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/AddItem.fxml"));
 			stage.setTitle("AddMedia View");
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("/css/AddItem.css").toExternalForm());
 			stage.setScene(scene);
 			MediaAddController.setStage(stage);
 			stage.showAndWait();
@@ -182,6 +183,7 @@ public class AdminController {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/UserComments.fxml"));
 			stage.setTitle("UserReviews View");
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("/css/UserComments.css").toExternalForm());
 			stage.setScene(scene);
 			stage.showAndWait();
 		} catch (IOException e) {
@@ -197,6 +199,7 @@ public class AdminController {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/AddItem.fxml"));
 			stage.setTitle("UpdateMedia View");
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("/css/AddItem.css").toExternalForm());
 			stage.setScene(scene);
 			MediaAddController.setStage(stage);
 			stage.showAndWait();
@@ -265,9 +268,9 @@ public class AdminController {
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/css/LoginView.css").toExternalForm());
 			Main.stage.setScene(scene);
-			Main.stage.setTitle("Login");
+			Main.stage.setTitle("Films/TV Series Archives");
 		} catch (Exception e) {
 			System.out.println("Error occured while inflating view: " + e);
 		}

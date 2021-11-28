@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="70.0" prefHeight="15.0" prefWidth="347.0" text="Welcome to Films/TV Series Archives" textFill="#3b7aff">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="133.0" layoutY="70.0" prefHeight="15.0" prefWidth="347.0" text="Welcome to Films/TV Series Archives" textFill="#3b7aff">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <TextField fx:id="txtUsername" layoutX="95.0" layoutY="130.0" prefHeight="30.0" prefWidth="212.0" promptText="username" />
-      <PasswordField fx:id="txtPassword" layoutX="95.0" layoutY="185.0" prefHeight="30.0" prefWidth="212.0" promptText="password" />
-      <Label fx:id="lblError" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="225.0" prefHeight="15.0" prefWidth="327.0" textFill="#ef4731" />
-      <Button layoutX="151.0" layoutY="257.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="100.0" text="login" textFill="#00b879" />
-      <Button layoutX="150.0" layoutY="313.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="100.0" text="register" textFill="#ef4731" />
+      <TextField fx:id="txtUsername" layoutX="201.0" layoutY="129.0" prefHeight="30.0" prefWidth="212.0" promptText="username" />
+      <PasswordField fx:id="txtPassword" layoutX="201.0" layoutY="185.0" prefHeight="30.0" prefWidth="212.0" promptText="password" />
+      <Label fx:id="lblError" alignment="CENTER" contentDisplay="CENTER" layoutX="143.0" layoutY="240.0" prefHeight="15.0" prefWidth="327.0" textFill="#ef4731" />
+      <Button layoutX="257.0" layoutY="276.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="100.0" text="login" textFill="#00b879" />
+      <Button layoutX="257.0" layoutY="324.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="100.0" text="register" textFill="#ef4731" />
    </children>
 </AnchorPane>

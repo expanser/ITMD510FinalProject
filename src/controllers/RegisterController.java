@@ -35,9 +35,9 @@ public class RegisterController {
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/css/LoginView.css").toExternalForm());
 			Main.stage.setScene(scene);
-			Main.stage.setTitle("Login");
+			Main.stage.setTitle("Films/TV Series Archives");
 		} catch (Exception e) {
 			System.out.println("Error occured while inflating view: " + e);
 		}

@@ -78,6 +78,11 @@ public class LoginController {
 			}
 
 			Scene scene = new Scene(root);
+			if (model.isAdmin() && isValid) {
+				scene.getStylesheets().add(getClass().getResource("/css/AdminView.css").toExternalForm());
+			} else {
+				scene.getStylesheets().add(getClass().getResource("/css/ClientView.css").toExternalForm());
+			}
 			Main.stage.setScene(scene);
 		} catch (Exception e) {
 			System.out.println("Error occured while inflating view: " + e);
@@ -92,6 +97,7 @@ public class LoginController {
 			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/RegisterView.fxml"));
 			Main.stage.setTitle("Register View");
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("/css/RegisterView.css").toExternalForm());
 			Main.stage.setScene(scene);
 		} catch (IOException e) {
 			System.out.println("Error occured while inflating view: " + e);

@@ -148,6 +148,7 @@ public class MediaDetailController {
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/ClientView.fxml"));
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("/css/ClientView.css").toExternalForm());
 			Main.stage.setScene(scene);
 			Main.stage.setTitle("Client View");
 		} catch (Exception e) {

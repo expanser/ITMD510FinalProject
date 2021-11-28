@@ -17,8 +17,8 @@ public class Main extends Application {
 			stage = primaryStage;
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			stage.setTitle("Login");
+			scene.getStylesheets().add(getClass().getResource("/css/LoginView.css").toExternalForm());
+			stage.setTitle("Films/TV Series Archives");
 			stage.setScene(scene);
 			stage.show();
 		} catch(Exception e) {

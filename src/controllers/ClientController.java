@@ -91,6 +91,7 @@ public class ClientController {
     			root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/mediaDetail.fxml"));
     			Main.stage.setTitle("Media View");
     			Scene scene = new Scene(root);
+    			scene.getStylesheets().add(getClass().getResource("/css/mediaDetail.css").toExternalForm());
     			Main.stage.setScene(scene);
     		} catch (IOException e) {
     			System.out.println("Error occured while inflating view: " + e);
@@ -107,6 +108,7 @@ public class ClientController {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/UserComments.fxml"));
 			stage.setTitle("UserReviews View");
 			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("/css/UserComments.css").toExternalForm());
 			stage.setScene(scene);
 			stage.showAndWait();
 		} catch (IOException e) {
@@ -120,9 +122,9 @@ public class ClientController {
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
 			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("/css/LoginView.css").toExternalForm());
 			Main.stage.setScene(scene);
-			Main.stage.setTitle("Login");
+			Main.stage.setTitle("Films/TV Series Archives");
 		} catch (Exception e) {
 			System.out.println("Error occured while inflating view: " + e);
 		}
