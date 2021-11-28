@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnect  {
-
+	// connect server
 	protected Connection connection;
 	public Connection getConnection() {
 		return connection;

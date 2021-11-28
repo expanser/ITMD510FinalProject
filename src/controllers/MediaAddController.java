@@ -25,6 +25,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import models.MediaAddModel;
 
+// for add item view
 public class MediaAddController {
 	
 	static int media_id = 0;
@@ -33,6 +34,7 @@ public class MediaAddController {
 	
     final ToggleGroup radiogGroup = new ToggleGroup();
 	
+    //movie genre
 	final String[] genreArr = new String[]{"Action", "Drama", "Adventure", "Comedy", "Animation", "Sci-Fi", "Fantasy", "Crime", "Thriller", "Sport", "War", "History", "Documentary"};
 	
 	@FXML
@@ -67,7 +69,6 @@ public class MediaAddController {
 	
 	public MediaAddController() {
 		model = new MediaAddModel();
-
 		// Create a Runnable
 		Runnable task = new Runnable()
 		{
@@ -78,19 +79,17 @@ public class MediaAddController {
 				initAddOrUpdate();
 			}
 		};
-
-		// Run the task in a background thread
 		Thread backgroundThread = new Thread(task);
-		// Terminate the running thread if the application exits
 		backgroundThread.setDaemon(true);
-		// Start the thread
 		backgroundThread.start();
 	}
 	
+	//initial choiceBox width options
 	public void initChoiceBox() {
 		Platform.runLater(() -> {
 			ObservableList<String> list = FXCollections.observableArrayList(genreArr);
 			choiceGenre.setItems(list);
+			// get value from changed event
 			choiceGenre.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Object>() {
 				@Override
 				public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
@@ -100,6 +99,7 @@ public class MediaAddController {
 		});
 	}
 	
+	//initial radioButton width options
 	public void initRadioBtn() {
 		Platform.runLater(() -> {
            
@@ -108,7 +108,7 @@ public class MediaAddController {
 
             radTV.setToggleGroup(radiogGroup);
             radTV.setUserData("TV Series");
-
+            // get value from changed event
             radiogGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             	@Override
                 public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
@@ -120,10 +120,11 @@ public class MediaAddController {
 		});
 	}
 	
+	// get media detail if it's for update
 	public void initAddOrUpdate() {
 		Platform.runLater(() -> {
 			if (media_id == 0) {
-				lblTitle.setText("Add Films/TV Series");
+				lblTitle.setText("Add Films/TV Series");//show right title
 				return;
 			}
 			lblTitle.setText("Update Films/TV Series");
@@ -133,17 +134,17 @@ public class MediaAddController {
 			String title = (String)data.get(4);
 			String director = (String)data.get(5);
 			Date releaseDate = (Date)data.get(6);
-			
+			// transfer to LocalDate for Date Picker
 			Format formatter = new SimpleDateFormat("yyyy/MM/dd/");
 			String dateArr[] = formatter.format(releaseDate).split("/");
 			LocalDate localDate = LocalDate.of(Integer.parseInt(dateArr[0]), Integer.parseInt(dateArr[1]), Integer.parseInt(dateArr[2]));
-			
+			// put the detail into interface
 			txtName.setText(title);
 			txtDirector.setText(director);
 			dateRelease.setValue(localDate);
 			selectedGenre = genre;
 			selectedType = type;
-			
+			// for choiceBox and radioButton to show the old value
 			choiceGenre.setValue(genre);
 			radiogGroup.selectToggle(type.equals("Films") ? radMov : radTV);
 		});
@@ -157,8 +158,7 @@ public class MediaAddController {
 		current_stage = stage;
 	}
 	
-	
-	
+	//verify the submit data
 	public void submitMedia() {
 		lblError.setText("");
 		String title = txtName.getText();
@@ -185,25 +185,27 @@ public class MediaAddController {
 			lblError.setText("type Cannot be empty");
 			return;
 		}
-		
+		// transfer date format to string
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String releaseDate = release_date.format(dateTimeFormatter);
 		
 		handleSubmit(title, selectedGenre, selectedType, director, releaseDate);
 	}
 
+	//add or update media
 	public void handleSubmit(String title, String genre, String media_type, String director, String release_date) {
 		Boolean isDone;
-		Boolean isAdd = media_id == 0;
+		Boolean isAdd = media_id == 0;//if media_id is 0,add a new one
 		if (isAdd) isDone = model.addMedia(title, genre, media_type, director, release_date);
 		else isDone = model.UpdateMedia(media_id, title, genre, media_type, director, release_date);
 		
 		if (isDone) {
+			// show success dialog
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Films/TV Series Archives");
 			alert.setHeaderText(isAdd ? "Add item success!" : "Update item success!");
 			alert.showAndWait();
-			if (isAdd) {
+			if (isAdd) {// if it's for add, clear all input field
 				txtName.setText("");
 				txtDirector.setText("");
 				dateRelease.setValue(null);
@@ -211,7 +213,7 @@ public class MediaAddController {
 				selectedType = null;
 				choiceGenre.setValue(null);
 				radiogGroup.selectToggle(null);
-			} else {
+			} else {// if it's for update, close the stage
 				current_stage.close();
 			}
 		}

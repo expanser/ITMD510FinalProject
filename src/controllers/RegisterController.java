@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
+// for register view
 public class RegisterController {
 
 	@FXML
@@ -29,8 +30,8 @@ public class RegisterController {
 		model = new RegisterModel();
 	}
 
+	// go to login
 	public void cancel() {
-		// System.exit(0);
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
 			Scene scene = new Scene(root);
@@ -42,6 +43,7 @@ public class RegisterController {
 		}
 	}
 	
+	// verify the data
 	public void register() {
 		lblError.setText("");
 		String username = this.txtUsername.getText();
@@ -65,20 +67,21 @@ public class RegisterController {
 		handleRegister(username, password);
 	}
 
+	// register 
 	public void handleRegister(String username, String password) {
-		// username check
+		// user name check
 		Boolean isOccupied = model.checkUserOccupied(username);
-		if (isOccupied) {
+		if (isOccupied) {// if it's been used,stop register
 			lblError.setText("username has been used!");
 			return;
 		}
 		Boolean isDone = model.addUser(username, password);
-		if (isDone) {
+		if (isDone) {// show success dialog
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Films/TV Series Archives");
 			alert.setHeaderText("Register success!");
 			alert.showAndWait();
-			cancel();
+			cancel();// go back to login
 		}
 	}
 

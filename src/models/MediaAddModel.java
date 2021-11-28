@@ -10,6 +10,7 @@ import Dao.DBConnect;
 
 public class MediaAddModel extends DBConnect {
 		
+	//update media by id
 	public Boolean UpdateMedia(int id, String title, String genre, String media_type, String director, String release_date){
            
         	String query = "UPDATE wei_zhou_media SET title = ?,genre = ?,media_type = ?,director = ?,release_date = ? WHERE id = ?;";
@@ -30,6 +31,7 @@ public class MediaAddModel extends DBConnect {
 			return false;
     }
 	
+	// add new media
 	public Boolean addMedia(String title, String genre, String media_type, String director, String release_date){
         
     	String query = "INSERT INTO `wei_zhou_media` (`title`, `genre`, `media_type`, `director`, `release_date`) VALUES (?, ?, ?, ?, ?)";
@@ -49,6 +51,7 @@ public class MediaAddModel extends DBConnect {
 		return false;
 	}
 	
+	// get media detail by id
 	public ArrayList<Object> getMediaDetail(int id) {
 		
     	String query = "SELECT * FROM wei_zhou_media WHERE id = ?;";

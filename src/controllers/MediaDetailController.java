@@ -23,6 +23,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+// for media detail view
 public class MediaDetailController {
 	
 	private static int media_id;
@@ -60,16 +61,12 @@ public class MediaDetailController {
 				handleCommentsList();
 			}
 		};
-
-		// Run the task in a background thread
 		Thread backgroundThread = new Thread(task);
-		// Terminate the running thread if the application exits
 		backgroundThread.setDaemon(true);
-		// Start the thread
 		backgroundThread.start();
-		
 	}
 	
+	// get media detail
 	public void handleGetDetail() {
 		ArrayList<Object> data = model.getMediaDetail(media_id);
 		String genre = (String)data.get(1);
@@ -78,7 +75,7 @@ public class MediaDetailController {
 		String director = (String)data.get(5);
 		Date releaseDate = (Date)data.get(6);
 		Format formatter = new SimpleDateFormat("MM/dd/yyyy");
-		
+		// put information into interface
 		Platform.runLater(() -> {
 			lblTitle.setText(title);
 			lblGenre.setText(genre);
@@ -88,6 +85,7 @@ public class MediaDetailController {
 		});
 	}
 	
+	//get comments list
 	public void handleCommentsList() {
 		ArrayList<ArrayList<Object>> data = model.getComments(media_id);
         List<HBoxCell> list = new ArrayList<>();
@@ -107,7 +105,7 @@ public class MediaDetailController {
 	
     public static class HBoxCell extends HBox {
         Label label = new Label();
-        HBoxCell(String name, String content, String date) {
+        HBoxCell(String name, String content, String date) {// comment item
              super();
              label.setText(name + " at " + date + " says \r\n" + content);
              label.setMaxWidth(470);
@@ -121,29 +119,32 @@ public class MediaDetailController {
 		media_id = id;
 	}
 	
+	// post new comment
 	public void postComment() {
 		int user_id = ClientController.user_id;
 		String txtComment = this.txtComment.getText();
+		// if comment is empty,show alert
 		if (txtComment == null || txtComment.trim().equals("")) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Films/TV Series Archives");
 			alert.setHeaderText("Review Cannot be empty or spaces!");
 			alert.showAndWait();
-		return;
+			return;
 		}
 		Boolean isDone = model.postComment(user_id, media_id, txtComment);
 		if (isDone) {
+			// show success dialog
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Films/TV Series Archives");
 			alert.setHeaderText("Post review success!");
 			alert.showAndWait();
 			this.txtComment.setText("");
-			handleCommentsList();
+			handleCommentsList();// after post, refresh comment list 
 		}
 	}
 	
+	// go to client view
 	public void goBack() {
-		// System.exit(0);
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/ClientView.fxml"));
 			Scene scene = new Scene(root);

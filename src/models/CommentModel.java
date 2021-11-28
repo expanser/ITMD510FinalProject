@@ -10,8 +10,10 @@ import Dao.DBConnect;
 
 public class CommentModel extends DBConnect {
 	
+	// get review list
 	public ArrayList<ArrayList<Object>> getComments(int user_id) {
 		
+		//need title from table wei_zhou_media
     	String query = "SELECT wei_zhou_comments.id,wei_zhou_media.title,wei_zhou_comments.content,wei_zhou_comments.create_time FROM wei_zhou_media,wei_zhou_comments WHERE wei_zhou_comments.user_id = ? and wei_zhou_comments.media_id = wei_zhou_media.id;";
         try(PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, user_id);
@@ -33,6 +35,7 @@ public class CommentModel extends DBConnect {
 		return null;
 	}
 	
+	//delete review by id
 	public boolean deleteReview(int commentId) {
     	String query = "DELETE FROM `wei_zhou_comments` WHERE id = ?;";
         try(PreparedStatement stmt = connection.prepareStatement(query)) {

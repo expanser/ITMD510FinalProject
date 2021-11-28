@@ -21,6 +21,7 @@ import models.CommentModel;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
+//for user comments view 
 public class CommentController {
 	
 	static int user_id;
@@ -51,12 +52,8 @@ public class CommentController {
 				handleLblTitle();
 			}
 		};
-
-		// Run the task in a background thread
 		Thread backgroundThread = new Thread(task);
-		// Terminate the running thread if the application exits
 		backgroundThread.setDaemon(true);
-		// Start the thread
 		backgroundThread.start();
 	}
 	
@@ -68,13 +65,16 @@ public class CommentController {
 		is_admin = isAdmin;
 	}
 	
+	// show the delete tip if it's admin
 	public void handleLblTitle() {
 		Platform.runLater(() -> {
 			lblTip.setText(is_admin == 1 ? "Click to delete the review" : "");
 		});
 	}
 	
+	// get comments list
 	public void handleCommentsList() {
+		// remove old event listener if there is
 		if (commentsListener != null) commentsList.getSelectionModel().selectedItemProperty().removeListener(commentsListener);
 		ArrayList<ArrayList<Object>> data = model.getComments(user_id);
         List<HBoxCell> list = new ArrayList<>();
@@ -90,6 +90,7 @@ public class CommentController {
 	        }
 			ObservableList<HBoxCell> strList = FXCollections.observableArrayList(list);
 			commentsList.setItems(strList);
+			// add event listener
 			commentsListener = new NoticeListItemChangeListener();
 			commentsList.getSelectionModel().selectedItemProperty().addListener(commentsListener);
 		});
@@ -105,6 +106,7 @@ public class CommentController {
     public class HBoxCell extends HBox {
         Label label = new Label();
         int id;
+        // comment item
         HBoxCell(int commentId, String title, String content, String date) {
              super();
              id = commentId;
@@ -115,15 +117,17 @@ public class CommentController {
              this.getChildren().addAll(label);
         }
         
+        //delete comment if the user is admin
         public void click() {
         	if (is_admin != 1) return;
+        	// show confirm dialog
     		Alert alert = new Alert(AlertType.CONFIRMATION, "Delete this review?", ButtonType.YES, ButtonType.NO);
     		alert.setTitle("Films/TV Series Archives");
     		alert.setHeaderText("Confirm");
     		alert.showAndWait();
     		if (alert.getResult() == ButtonType.YES) {
     			Boolean isDone = model.deleteReview(id);
-    			if (isDone) initPage();
+    			if (isDone) initPage();// after delete, refresh the list
     		}
         }
    }

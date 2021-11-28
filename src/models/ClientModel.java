@@ -10,6 +10,7 @@ import Dao.DBConnect;
 
 public class ClientModel extends DBConnect {
 	
+	// get media list by title
 	public ArrayList<ArrayList<Object>> searchMedia(String keyword) {
 		
     	String query = "SELECT * FROM wei_zhou_media WHERE title like ?;";

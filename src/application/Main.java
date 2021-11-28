@@ -7,11 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 public class Main extends Application {
+	// global stage
 	public static Stage stage;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			// initial
 			stage = primaryStage;
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
 			Scene scene = new Scene(root);

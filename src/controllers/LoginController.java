@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import models.LoginModel;
 
+// for login views
 public class LoginController {
 
 	@FXML
@@ -54,6 +55,7 @@ public class LoginController {
 
 	}
 
+	// login
 	public void checkCredentials(String username, String password) {
 		Boolean isValid = model.getCredentials(username, password);
 		if (!isValid) {
@@ -64,7 +66,6 @@ public class LoginController {
 			AnchorPane root;
 			if (model.isAdmin() && isValid) {
 				// If user is admin, inflate admin view
-
 				root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/AdminView.fxml"));
 				Main.stage.setTitle("Admin View");
 
@@ -72,21 +73,19 @@ public class LoginController {
 				// If user is customer, inflate customer view
 				int user_id = model.getId();
 				ClientController.setUserid(user_id);
-				
 				root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/ClientView.fxml"));
-				// ***Set user ID acquired from db****
 				Main.stage.setTitle("Client View");
 			}
 
 			Scene scene = new Scene(root);
 			Main.stage.setScene(scene);
-
 		} catch (Exception e) {
 			System.out.println("Error occured while inflating view: " + e);
 		}
 
 	}
 	
+	// go to register view
 	public void register() {
 		AnchorPane root;
 		try {

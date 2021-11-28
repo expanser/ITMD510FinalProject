@@ -8,6 +8,7 @@ import Dao.DBConnect;
 
 public class RegisterModel extends DBConnect {
 		
+	// check if the user name has been used
 	public Boolean checkUserOccupied(String username){
            
         	String query = "SELECT * FROM wei_zhou_users WHERE user_name = ?;";
@@ -23,6 +24,7 @@ public class RegisterModel extends DBConnect {
 			return false;
     }
 	
+	// add new user
 	public Boolean addUser(String username, String password){
         
     	String query = "INSERT INTO `wei_zhou_users` (`user_name`, `user_password`) VALUES (?, ?)";

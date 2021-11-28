@@ -25,6 +25,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
+// for admin view
 public class AdminController {
 	
 	@FXML
@@ -46,6 +47,7 @@ public class AdminController {
 	@FXML
 	private TextField txtDelete;
 	
+	// add event listener after get data 
 	NoticeListItemChangeListener userListener;
 	
 	NoticeListItemChangeListener updateListener;
@@ -59,6 +61,7 @@ public class AdminController {
 	}
 
 	public void viewUsers() {
+		// show pane and clear input
 		txtUsername.setText("");
 		paneUserList.setVisible(true);
 		paneUpdateList.setVisible(false);
@@ -66,6 +69,7 @@ public class AdminController {
 	}
 
 	public void updateRec() {
+		// show pane and clear input
 		txtUpdate.setText("");
 		paneUserList.setVisible(false);
 		paneUpdateList.setVisible(true);
@@ -73,6 +77,7 @@ public class AdminController {
 	}
 
 	public void addRec() {
+		// go to additem
 		try {
 			MediaAddController.setMediaId(0);
 			Stage stage = new Stage();
@@ -88,6 +93,7 @@ public class AdminController {
 	}
 	
 	public void deleteRec() {
+		// show pane and clear input
 		txtDelete.setText("");
 		paneUserList.setVisible(false);
 		paneUpdateList.setVisible(false);
@@ -95,6 +101,7 @@ public class AdminController {
 	}
 	
 	public void searchUser() {
+		// get user list
 		if (userListener != null) userList.getSelectionModel().selectedItemProperty().removeListener(userListener);
 		String keyword = this.txtUsername.getText();
 		ArrayList<ArrayList<Object>> data = model.searchUser(keyword);
@@ -109,10 +116,12 @@ public class AdminController {
 		
 		ObservableList<HBoxCell> strList = FXCollections.observableArrayList(list);
 		userList.setItems(strList);
+		// add event listener
 		userListener = new NoticeListItemChangeListener();
 		userList.getSelectionModel().selectedItemProperty().addListener(userListener);
 	}
 	
+	// event listener class 
 	private class NoticeListItemChangeListener implements ChangeListener<Object> {
 
         public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
@@ -133,7 +142,7 @@ public class AdminController {
              id = userId;
              clickEvent = 0;
              String lblAdmin = "";
-             if (isAdmin > 0) lblAdmin = "(admin)";
+             if (isAdmin > 0) lblAdmin = "(admin)";//add admin tip if the user is
              label.setText(name.concat(lblAdmin));
              label.setMaxWidth(Double.MAX_VALUE);
              HBox.setHgrow(label, Priority.ALWAYS);
@@ -152,6 +161,7 @@ public class AdminController {
             this.getChildren().addAll(label);
         }
         
+        // different event classify by clickEvent
         public void click() {
         	if (clickEvent == 0) {
         		handleGotoUser(id);
@@ -163,9 +173,10 @@ public class AdminController {
         }
     }
     
+    // go to user comment list
     public void handleGotoUser(int id){
 		try {
-			CommentController.setIsAdmin(1);
+			CommentController.setIsAdmin(1);// only admin can delete reviews
 			CommentController.setUserId(id);
 			Stage stage = new Stage();
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/UserComments.fxml"));
@@ -178,6 +189,7 @@ public class AdminController {
 		}
     }
     
+    // go to update media view
     public void handleUpdateMedia(int id){
 		try {
 			MediaAddController.setMediaId(id);
@@ -193,18 +205,22 @@ public class AdminController {
 		}
     }
     
+    // delete media
     public void handleDeleteMedia(String title, int id) {
+    	// show confirm dialog
 		Alert alert = new Alert(AlertType.CONFIRMATION, "Delete " + title + " ?", ButtonType.YES, ButtonType.NO);
 		alert.setTitle("Films/TV Series Archives");
 		alert.setHeaderText("Confirm");
 		alert.showAndWait();
 		if (alert.getResult() == ButtonType.YES) {
 			Boolean isDone = model.deleteMedia(id);
-			if (isDone) searchDelete();
+			if (isDone) searchDelete();//after delete,refresh the list
 		}
     }
     
+    // get media list for update
     public void searchUpdate() {
+    	// remove old event listener if there is
 		if (updateListener != null) updateList.getSelectionModel().selectedItemProperty().removeListener(updateListener);
 		String keyword = this.txtUpdate.getText();
 		ArrayList<ArrayList<Object>> data = model.searchMedia(keyword);
@@ -218,11 +234,14 @@ public class AdminController {
 
 		ObservableList<HBoxCell> strList = FXCollections.observableArrayList(list);
 		updateList.setItems(strList);
+		// add event listener
 		updateListener = new NoticeListItemChangeListener();
 		updateList.getSelectionModel().selectedItemProperty().addListener(updateListener);
     }
     
+    // get media list for delete
     public void searchDelete() {
+    	// remove old event listener if there is
 		if (deleteListener != null) deleteList.getSelectionModel().selectedItemProperty().removeListener(deleteListener);
 		String keyword = this.txtDelete.getText();
 		ArrayList<ArrayList<Object>> data = model.searchMedia(keyword);
@@ -236,12 +255,13 @@ public class AdminController {
 		
 		ObservableList<HBoxCell> strList = FXCollections.observableArrayList(list);
 		deleteList.setItems(strList);
+		// add event listener
 		deleteListener = new NoticeListItemChangeListener();
 		deleteList.getSelectionModel().selectedItemProperty().addListener(deleteListener);
     }
 	
+    //go to login view
 	public void logout() {
-		// System.exit(0);
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
 			Scene scene = new Scene(root);

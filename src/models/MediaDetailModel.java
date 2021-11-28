@@ -10,6 +10,7 @@ import Dao.DBConnect;
 
 public class MediaDetailModel extends DBConnect {
 	
+	// get media detail by id
 	public ArrayList<Object> getMediaDetail(int id) {
 		
     	String query = "SELECT * FROM wei_zhou_media WHERE id = ?;";
@@ -32,6 +33,7 @@ public class MediaDetailModel extends DBConnect {
 		return null;
 	}
 	
+	// get review list by media id
 	public ArrayList<ArrayList<Object>> getComments(int media_id) {
 		
     	String query = "SELECT wei_zhou_users.user_name,wei_zhou_comments.content,wei_zhou_comments.create_time FROM wei_zhou_users,wei_zhou_comments WHERE wei_zhou_comments.media_id = ? and wei_zhou_users.id = wei_zhou_comments.user_id;";
@@ -55,6 +57,7 @@ public class MediaDetailModel extends DBConnect {
 		return null;
 	}
 	
+	// post new review
 	public Boolean postComment(int user_id, int media_id, String comment){
         
     	String query = "INSERT INTO `wei_zhou_comments` (`content`, `user_id`, `media_id`) VALUES (?, ?, ?)";

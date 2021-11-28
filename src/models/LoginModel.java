@@ -24,6 +24,7 @@ public class LoginModel extends DBConnect {
 		this.admin = admin;
 	}
 		
+	//login verify
 	public Boolean getCredentials(String username, String password){
            
         	String query = "SELECT * FROM wei_zhou_users WHERE user_name = ? and user_password = ?;";

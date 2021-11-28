@@ -21,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
+// for client view
 public class ClientController {
 
 	static int user_id;
@@ -42,7 +43,9 @@ public class ClientController {
 		user_id = id;
 	}
 	
+	// get media list
 	public void search() {
+		// remove old event listener if there is
 		if (movieListener != null) mediaList.getSelectionModel().selectedItemProperty().removeListener(movieListener);
 		String keyword = this.txtKeyword.getText();
 		ArrayList<ArrayList<Object>> data = model.searchMedia(keyword);
@@ -56,6 +59,7 @@ public class ClientController {
 		
 		ObservableList<HBoxCell> strList = FXCollections.observableArrayList(list);
 		mediaList.setItems(strList);
+		// add event listener
 		movieListener = new NoticeListItemChangeListener();
 		mediaList.getSelectionModel().selectedItemProperty().addListener(movieListener);
 	}
@@ -79,6 +83,7 @@ public class ClientController {
              this.getChildren().addAll(label);
         }
         
+        // go to media detail
         public void click() {
         	MediaDetailController.setMediaId(id);
     		AnchorPane root;
@@ -91,8 +96,9 @@ public class ClientController {
     			System.out.println("Error occured while inflating view: " + e);
     		}
         }
-   }
+    }
 	
+    // go to user comments
 	public void viewComments() {
 		try {
 			CommentController.setIsAdmin(0);
@@ -109,9 +115,8 @@ public class ClientController {
 
 	}
 	
-	
+	// go to login view
 	public void logout() {
-		// System.exit(0);
 		try {
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/LoginView.fxml"));
 			Scene scene = new Scene(root);
