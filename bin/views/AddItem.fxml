@@ -9,6 +9,7 @@
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="534.0" maxWidth="662.0" prefHeight="324.0" prefWidth="438.0" style="-fx-background-color: bbbdbd;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MediaAddController">
 	<!-- TODO Add Nodes -->
@@ -17,9 +18,12 @@
             <Glow level="0.0" />
          </effect>
          <children>
-            <Button layoutX="185.0" layoutY="339.0" mnemonicParsing="false" onAction="#submitMedia" prefHeight="23.0" prefWidth="171.0" text="Submit" />
+            <Button layoutX="185.0" layoutY="339.0" mnemonicParsing="false" onAction="#submitMedia" prefHeight="23.0" prefWidth="171.0" text="Submit" textFill="#00b879" />
             <TextField fx:id="txtName" layoutX="238.0" layoutY="65.0" prefHeight="23.0" prefWidth="262.0" />
-            <Label fx:id="lblTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="23.0" prefHeight="15.0" prefWidth="262.0" />
+            <Label fx:id="lblTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="23.0" prefHeight="15.0" prefWidth="262.0" textFill="#3b7aff">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
             <Label layoutX="45.0" layoutY="69.0" prefHeight="15.0" prefWidth="145.0" text="Name" />
             <Label layoutX="45.0" layoutY="153.0" prefHeight="15.0" prefWidth="145.0" text="Genre" />
             <DatePicker fx:id="dateRelease" layoutX="238.0" layoutY="192.0" prefHeight="23.0" prefWidth="262.0" />
@@ -29,7 +33,7 @@
             <TextField fx:id="txtDirector" layoutX="238.0" layoutY="108.0" prefHeight="23.0" prefWidth="262.0" />
          <RadioButton fx:id="radMov" layoutX="238.0" layoutY="242.0" mnemonicParsing="false" text="Films" />
          <RadioButton fx:id="radTV" layoutX="410.0" layoutY="242.0" mnemonicParsing="false" text="TV Series" />
-         <Label fx:id="lblError" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="292.0" prefHeight="15.0" prefWidth="308.0" />
+         <Label fx:id="lblError" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="292.0" prefHeight="15.0" prefWidth="308.0" textFill="#ef4731" />
          <Label layoutX="45.0" layoutY="243.0" prefHeight="15.0" prefWidth="145.0" text="Type" />
          </children>
       </Pane>

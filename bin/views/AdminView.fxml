@@ -7,14 +7,15 @@
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="529.0" maxWidth="766.0" minHeight="465.0" minWidth="662.0" prefHeight="529.0" prefWidth="766.0" style="-fx-background-color: bbbdbd;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
    <children>
-      <Button layoutX="14.0" layoutY="124.0" maxHeight="34.0" maxWidth="206.0" minHeight="34.0" minWidth="186.0" mnemonicParsing="false" onAction="#viewUsers" prefHeight="34.0" prefWidth="206.0" text="View Users" />
-      <Button layoutX="14.0" layoutY="189.0" maxHeight="34.0" maxWidth="205.0" minHeight="34.0" minWidth="186.0" mnemonicParsing="false" onAction="#updateRec" prefHeight="34.0" prefWidth="205.0" text="Update Films/TV Series" />
-      <Button layoutX="13.0" layoutY="253.0" maxHeight="34.0" maxWidth="206.0" minHeight="34.0" minWidth="186.0" mnemonicParsing="false" onAction="#addRec" prefHeight="34.0" prefWidth="206.0" text="Add Films/TV Series" />
-      <Button layoutX="13.0" layoutY="377.0" maxHeight="34.0" maxWidth="206.0" minHeight="34.0" minWidth="186.0" mnemonicParsing="false" onAction="#logout" prefHeight="34.0" prefWidth="206.0" text="logout" />
-      <Button layoutX="13.0" layoutY="316.0" maxHeight="34.0" maxWidth="206.0" minHeight="34.0" minWidth="186.0" mnemonicParsing="false" onAction="#deleteRec" prefHeight="34.0" prefWidth="206.0" text="Delete Films/TV Series" />
+      <Button layoutX="14.0" layoutY="124.0" maxHeight="34.0" maxWidth="206.0" minHeight="34.0" minWidth="186.0" mnemonicParsing="false" onAction="#viewUsers" prefHeight="34.0" prefWidth="206.0" text="View Users" textFill="#00b879" />
+      <Button layoutX="14.0" layoutY="189.0" maxHeight="34.0" maxWidth="205.0" minHeight="34.0" minWidth="186.0" mnemonicParsing="false" onAction="#updateRec" prefHeight="34.0" prefWidth="205.0" text="Update Films/TV Series" textFill="#00b879" />
+      <Button layoutX="13.0" layoutY="253.0" maxHeight="34.0" maxWidth="206.0" minHeight="34.0" minWidth="186.0" mnemonicParsing="false" onAction="#addRec" prefHeight="34.0" prefWidth="206.0" text="Add Films/TV Series" textFill="#00b879" />
+      <Button layoutX="13.0" layoutY="377.0" maxHeight="34.0" maxWidth="206.0" minHeight="34.0" minWidth="186.0" mnemonicParsing="false" onAction="#logout" prefHeight="34.0" prefWidth="206.0" text="logout" textFill="#ef4731" />
+      <Button layoutX="13.0" layoutY="316.0" maxHeight="34.0" maxWidth="206.0" minHeight="34.0" minWidth="186.0" mnemonicParsing="false" onAction="#deleteRec" prefHeight="34.0" prefWidth="206.0" text="Delete Films/TV Series" textFill="#00b879" />
       <Pane fx:id="paneUserList" layoutX="231.0" layoutY="106.0" prefHeight="372.0" prefWidth="510.0" visible="false">
          <effect>
             <Glow level="0.0" />
@@ -22,9 +23,9 @@
          <children>
             <Label layoutX="17.0" layoutY="71.0" prefHeight="15.0" prefWidth="118.0" text="Enter name" />
             <TextField fx:id="txtUsername" layoutX="142.0" layoutY="67.0" prefHeight="23.0" prefWidth="250.0" />
-            <Button layoutX="392.0" layoutY="67.0" mnemonicParsing="false" onAction="#searchUser" prefHeight="23.0" prefWidth="103.0" text="search" />
+            <Button layoutX="392.0" layoutY="67.0" mnemonicParsing="false" onAction="#searchUser" prefHeight="23.0" prefWidth="103.0" text="search" textFill="#00b879" />
             <ListView fx:id="userList" layoutX="17.0" layoutY="119.0" prefHeight="229.0" prefWidth="476.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="24.0" prefHeight="15.0" prefWidth="147.0" text="View Users" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="24.0" prefHeight="15.0" prefWidth="147.0" text="View Users" textFill="#3b7aff" />
          </children>
       </Pane>
       <Pane fx:id="paneUpdateList" layoutX="231.0" layoutY="106.0" prefHeight="372.0" prefWidth="510.0" visible="false">
@@ -34,9 +35,9 @@
          <children>
 			<Label layoutX="17.0" layoutY="71.0" prefHeight="15.0" prefWidth="118.0" text="Enter title" />  
             <TextField fx:id="txtUpdate" layoutX="142.0" layoutY="67.0" prefHeight="23.0" prefWidth="250.0" />
-            <Button layoutX="392.0" layoutY="67.0" mnemonicParsing="false" onAction="#searchUpdate" prefHeight="23.0" prefWidth="103.0" text="search" />
+            <Button layoutX="392.0" layoutY="67.0" mnemonicParsing="false" onAction="#searchUpdate" prefHeight="23.0" prefWidth="103.0" text="search" textFill="#00b879" />
             <ListView fx:id="updateList" layoutX="17.0" layoutY="119.0" prefHeight="229.0" prefWidth="476.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="26.0" prefHeight="15.0" prefWidth="311.0" text="Update Films/TV Series" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="26.0" prefHeight="15.0" prefWidth="311.0" text="Update Films/TV Series" textFill="#3b7aff" />
          </children>
       </Pane>
       <Pane fx:id="paneDeleteList" layoutX="231.0" layoutY="106.0" prefHeight="372.0" prefWidth="510.0" visible="false">
@@ -46,11 +47,14 @@
          <children>
             <Label layoutX="17.0" layoutY="71.0" prefHeight="15.0" prefWidth="118.0" text="Enter title" />  
             <TextField fx:id="txtDelete" layoutX="142.0" layoutY="67.0" prefHeight="23.0" prefWidth="250.0" />
-            <Button layoutX="392.0" layoutY="67.0" mnemonicParsing="false" onAction="#searchDelete" prefHeight="23.0" prefWidth="103.0" text="search" />
+            <Button layoutX="392.0" layoutY="67.0" mnemonicParsing="false" onAction="#searchDelete" prefHeight="23.0" prefWidth="103.0" text="search" textFill="#00b879" />
             <ListView fx:id="deleteList" layoutX="17.0" layoutY="119.0" prefHeight="229.0" prefWidth="476.0" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="26.0" prefHeight="15.0" prefWidth="311.0" text="Delete Films/TV Series" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="26.0" prefHeight="15.0" prefWidth="311.0" text="Delete Films/TV Series" textFill="#3b7aff" />
          </children>
       </Pane>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="309.0" layoutY="53.0" prefHeight="15.0" prefWidth="147.0" text="Welcome admin " />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="309.0" layoutY="53.0" prefHeight="15.0" prefWidth="147.0" text="Welcome admin " textFill="#3b7aff">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
    </children>
 </AnchorPane>

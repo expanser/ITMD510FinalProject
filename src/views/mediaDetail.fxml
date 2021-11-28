@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="530.0" maxWidth="600.0" prefHeight="530.0" prefWidth="600.0" style="-fx-background-color: bbbdbd;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MediaDetailController">
    <children>
-      <Button layoutX="46.0" layoutY="32.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="92.0" text="Go back" AnchorPane.rightAnchor="462.0" />
+      <Button layoutX="46.0" layoutY="32.0" mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="92.0" text="Go back" textFill="#00b879" AnchorPane.rightAnchor="462.0" />
       <Label layoutX="46.0" layoutY="95.0" text="Name" />
       <Label layoutX="46.0" layoutY="128.0" text="Director" />
       <Label layoutX="46.0" layoutY="162.0" text="Genre" />
@@ -17,7 +17,7 @@
       <Label fx:id="lblGenre" layoutX="160.0" layoutY="162.0" />
       <Label fx:id="lblDirector" layoutX="159.0" layoutY="128.0" />
       <Label fx:id="lblReleaseDate" layoutX="470.0" layoutY="162.0" />
-      <Button layoutX="445.0" layoutY="460.0" mnemonicParsing="false" onAction="#postComment" prefHeight="27.0" prefWidth="114.0" text="Post" />
+      <Button layoutX="445.0" layoutY="460.0" mnemonicParsing="false" onAction="#postComment" prefHeight="27.0" prefWidth="114.0" text="Post" textFill="#00b879" />
       <TextArea fx:id="txtComment" layoutX="46.0" layoutY="441.0" maxHeight="66.0" maxWidth="381.0" minHeight="66.0" minWidth="381.0" prefHeight="66.0" prefWidth="381.0" wrapText="true" />
       <ListView fx:id="commentsList" layoutX="46.0" layoutY="208.0" prefHeight="200.0" prefWidth="514.0" />
       <Label fx:id="lblType" layoutX="496.0" layoutY="38.0" />
