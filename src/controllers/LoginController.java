@@ -11,6 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import models.LoginModel;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 // for login views
 public class LoginController {
@@ -30,7 +32,7 @@ public class LoginController {
 		model = new LoginModel();
 	}
 	
-	public void login() {
+	public void login() throws NoSuchAlgorithmException {
 		
 		lblError.setText("");
 		String username = this.txtUsername.getText();
@@ -56,8 +58,17 @@ public class LoginController {
 	}
 
 	// login
-	public void checkCredentials(String username, String password) {
-		Boolean isValid = model.getCredentials(username, password);
+	public void checkCredentials(String username, String password) throws NoSuchAlgorithmException {
+		
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(password.getBytes());
+        byte byteData[] = md.digest();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+        	sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+		
+		Boolean isValid = model.getCredentials(username, sb.toString());
 		if (!isValid) {
 			lblError.setText("User or password error!");
 			return;

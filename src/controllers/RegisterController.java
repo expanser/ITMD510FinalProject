@@ -1,5 +1,8 @@
 package controllers;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import application.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -44,7 +47,7 @@ public class RegisterController {
 	}
 	
 	// verify the data
-	public void register() {
+	public void register() throws NoSuchAlgorithmException {
 		lblError.setText("");
 		String username = this.txtUsername.getText();
 		String password = this.txtPassword.getText();
@@ -68,14 +71,23 @@ public class RegisterController {
 	}
 
 	// register 
-	public void handleRegister(String username, String password) {
+	public void handleRegister(String username, String password) throws NoSuchAlgorithmException {
 		// user name check
 		Boolean isOccupied = model.checkUserOccupied(username);
 		if (isOccupied) {// if it's been used,stop register
 			lblError.setText("username has been used!");
 			return;
 		}
-		Boolean isDone = model.addUser(username, password);
+		
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(password.getBytes());
+        byte byteData[] = md.digest();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+        	sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+		
+		Boolean isDone = model.addUser(username, sb.toString());
 		if (isDone) {// show success dialog
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Films/TV Series Archives");
